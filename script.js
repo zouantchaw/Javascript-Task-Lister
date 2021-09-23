@@ -3,11 +3,14 @@ let submitButton = document.getElementById("submit-button");
 let form = document.getElementById("create-task-form")
 let list = document.getElementById("list")
 
+let emptyInput = function() {
+  if (input.value === "") {
+    return true
+  }
+}
+
 function addTask(task) {
   console.log(task)
-  if (input.value === "") {
-    console.log("empty string")
-  } 
   let tasks = document.getElementById("tasks")
   let li = document.createElement('li')
   let deleteButton = document.createElement("button")
@@ -38,8 +41,16 @@ function deleteTask(id) {
 
 form.addEventListener('submit', function(event){
   console.log("Submit Clicked");
-  addTask(input.value + " ")
-  event.preventDefault();
+  // If input is empty
+  // display alert message
+  if (emptyInput) {
+    console.log("empty field")
+    alert("Cannot leave field empty")
+    event.preventDefault();
+  }else{
+    addTask(input.value + " ")
+    event.preventDefault();
+  }
 } )
 
 
